@@ -1,0 +1,184 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(-45deg,
+  #883b55,
+  #201717,
+  #10324b,
+  #050505);
+
+  
+
+/* Make the gradient bigger than the screen, so we can pan across it */
+background-size: 300% 300%;
+
+/* Animate the background position for a slow, subtle shift */
+animation: gradientShift 20s ease infinite;
+
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  max-width: 1000px;
+  max-height: 600px;
+  height: calc(100vh - 24px);
+  min-height: 300px;
+  width: calc(100% - 24px);
+  min-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 24px;
+  display: flex;
+}
+#LeftContainer{
+  width: 100%;
+  margin-right: 12px;
+  height: 100%;
+  display: flex;
+  flex: 3;
+}
+#rightContainer {
+  flex: 0;
+  display: flex;
+  flex-direction: column;           /* Stack children vertically */
+  width: 80px;
+  height: 100%;
+  transition: all 0.5s cubic-bezier(0.2, 0.1, 0.2, 1);
+}
+#rightContainer:hover {
+  flex: 1;
+  width: auto;
+}
+
+#rightContainer:hover{
+  width: 400px;
+}
+.RoundedContainer{
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(100px);
+
+}
+
+.glowBorder{
+  box-shadow: 
+  inset 0px 0px 10px -8px rgba(255, 255, 255, .5),
+  inset 0px 0px 8px -6px rgba(255, 255, 255, .5), 
+  0px 0px 10px -8px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+}
+.contentContainer{
+  padding: 20px;
+  overflow-y: scroll;
+}
+.RoundedContainerEmpty{
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(50px);
+}
+
+#navigationContainer{ }
+
+.navItem{
+  display: flex;
+  text-align: left;
+  align-items: center;
+  cursor: pointer;
+  height: 80px;
+  transition: all .5 ease-in-out;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.navItem:hover{
+color: white;
+text-shadow: white 0px 0px 20px;
+font-size: 18px;
+
+}
+.navItem p{
+  margin-left: 15px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+.fullHeight{
+  flex: 1;
+  height: auto;
+}
+.innerBorder{
+  
+  margin: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+  inset 0px 0px 10px -6px rgba(255, 255, 255, 0.1),
+  0px 0px 10px -6px rgba(255, 255, 255, 0.1);
+  
+  flex: 1;
+  
+}
+.outerBorder{
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.diagonal-stripes {
+  /* Example: diagonal stripes that repeat every 20px */
+  background: repeating-linear-gradient(
+    45deg,              /* 45° angle = diagonal */
+    #ffffff10,               /* First stripe color */
+    #ffffff10 2px,          /* End of stripe color stop */
+    #00000000 2px,          /* Gap color starts at 10px */
+    #00000000 10px           /* End gap color at 20px (then repeats) */
+  );
+  background-position: center;
+}
+
+
+
+
+
+
+
+
+
