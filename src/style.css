@@ -1,16 +1,55 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 46px;
+  padding: 0px;
+  margin: 0px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 22px;
+  color: #ececec30;
+}
+
+p {
+  text-align: left;
+  font-weight: 200;
+  font-size: 17px;
+  color: #d3d9dfd0;
+  margin: 12px 0px 36px 0px;
+}
+
+#backgroundCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+p b {
+  border-radius: 2px;
+  font-weight: 300;
+  color: rgba(211, 192, 168, 0.9);
 }
 
 a {
@@ -18,8 +57,24 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
+}
+::selection {
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
+  padding: 20px;
+}
+.H1Container {
+  display: flex;
+  align-items: center;
+  height: 140px;
+  margin-bottom: 24px;
+}
+
+.H1Container h1 {
+  flex: 1;
 }
 
 body {
@@ -28,41 +83,72 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(-45deg,
-  #883b55,
-  #201717,
-  #10324b,
-  #050505);
-
-  
-
-/* Make the gradient bigger than the screen, so we can pan across it */
-background-size: 300% 300%;
-
-/* Animate the background position for a slow, subtle shift */
-animation: gradientShift 20s ease infinite;
-
+  position: relative;
+  background: #03090c; /* Fallback color */
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Original background layer */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle calc(50vw + 700px) at 
+    calc(0% - 300px) calc(100% + 300px), 
+    rgb(0 155 237 / 29%), #00000000 70%),
+
+    radial-gradient(circle calc(50vw + 700px) at 
+    calc(100% + 300px) calc(100% + 300px), 
+    rgba(255, 116, 2, 0.301), transparent 70%),
+
+    #03090c;
+  background-size: 100% 100%;
+  transition: opacity .5s ease-in-out;
+  opacity: 1;
+  z-index: -2;
 }
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+/* Green background layer */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle calc(50vw + 700px) at calc(0% - 200px) calc(0% + 300px), rgba(0, 201, 237, 0.29), #af1b1b00 70%),
+    
+    radial-gradient(circle calc(50vw + 700px) at 
+    calc(100% - 200px) calc(0% + 300px), 
+    rgba(241, 218, 144, 0.1), transparent 70%),
+    #03090c;
+  background-size: 100% 100%;
+  transition: opacity .5s ease-in-out;
+  opacity: 0.5; /* Default state */
+  z-index: -2;
+}
+
+/* When .green is added, fade out original and fade in green */
+body.green::before {
+  opacity: 0.5;
+}
+
+body.green::after {
+  opacity: 1;
+}
+
+.FlexContainer {
+  display: flex;
+  width: 100%;
 }
 
 #app {
   max-width: 1000px;
-  max-height: 600px;
+  max-height: 800px;
   height: calc(100vh - 24px);
   min-height: 300px;
   width: calc(100% - 24px);
@@ -71,114 +157,147 @@ h1 {
   text-align: center;
   border-radius: 24px;
   display: flex;
+  position: relative;
+  z-index: 1;
 }
-#LeftContainer{
+
+#LeftContainer {
   width: 100%;
   margin-right: 12px;
   height: 100%;
   display: flex;
   flex: 3;
 }
+
 #rightContainer {
-  flex: 0;
   display: flex;
-  flex-direction: column;           /* Stack children vertically */
+  flex-direction: column;
   width: 80px;
   height: 100%;
   transition: all 0.5s cubic-bezier(0.2, 0.1, 0.2, 1);
 }
-#rightContainer:hover {
-  flex: 1;
-  width: auto;
+
+#rightContainer.expanded {
+  width: 300px;
 }
 
-#rightContainer:hover{
-  width: 400px;
-}
-.RoundedContainer{
+.RoundedContainer {
   border-radius: 16px;
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(100px);
-
 }
 
-.glowBorder{
-  box-shadow: 
-  inset 0px 0px 10px -8px rgba(255, 255, 255, .5),
-  inset 0px 0px 8px -6px rgba(255, 255, 255, .5), 
-  0px 0px 10px -8px rgba(255, 255, 255, 0.5);
+.glowBorder {
+  box-shadow:
+    inset 0px 0px 10px -8px rgba(255, 255, 255, .5),
+    inset 0px 0px 8px -6px rgba(255, 255, 255, .5),
+    0px 0px 10px -8px rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.17);
 }
-.contentContainer{
-  padding: 20px;
+
+.contentContainer {
+  padding: 24px 48px;
   overflow-y: scroll;
+  scrollbar-width: none;
+  display: flex;
 }
-.RoundedContainerEmpty{
+
+.RoundedContainerEmpty {
   border-radius: 16px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(50px);
 }
 
-#navigationContainer{ }
-
-.navItem{
+.navItem {
   display: flex;
   text-align: left;
   align-items: center;
   cursor: pointer;
   height: 80px;
   transition: all .5 ease-in-out;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 12px;
+  border: 0px solid white;
+  transition: all .2s ease-in-out, border .3s ease-in-out, box-shadow .3s ease-in-out;
 }
-.navItem:hover{
-color: white;
-text-shadow: white 0px 0px 20px;
-font-size: 18px;
 
+.navItem:hover {
+  color: white;
+  text-shadow: white 0px 0px 20px;
+  border: 1px solid white;
+  box-shadow:
+    inset 0px 0px 10px -5px rgba(255, 255, 255, 1),
+    inset 0px 0px 8px -4px rgba(255, 255, 255, 1),
+    0px 0px 10px -5px rgba(255, 255, 255, 1);
 }
-.navItem p{
+
+.navItem p {
   margin-left: 15px;
   margin-block-start: 0em;
   margin-block-end: 0em;
+  pointer-events: none;
+  color: #00000000;
+  transition: all .2s ease-in-out;
 }
-.fullHeight{
+
+.navItem:hover p {
+  color: #ffffff;
+}
+
+.fullHeight {
   flex: 1;
   height: auto;
 }
-.innerBorder{
-  
+
+.innerBorder {
   margin: 10px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-  inset 0px 0px 10px -6px rgba(255, 255, 255, 0.1),
-  0px 0px 10px -6px rgba(255, 255, 255, 0.1);
-  
+  box-shadow:
+    inset 0px 0px 10px -6px rgba(255, 255, 255, 0.1),
+    0px 0px 10px -6px rgba(255, 255, 255, 0.1);
   flex: 1;
-  
 }
-.outerBorder{
+
+.outerBorder {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.diagonal-stripes {
-  /* Example: diagonal stripes that repeat every 20px */
-  background: repeating-linear-gradient(
-    45deg,              /* 45° angle = diagonal */
-    #ffffff10,               /* First stripe color */
-    #ffffff10 2px,          /* End of stripe color stop */
-    #00000000 2px,          /* Gap color starts at 10px */
-    #00000000 10px           /* End gap color at 20px (then repeats) */
-  );
+.ContentPic {
+  float: left;
+  background-size: cover;
   background-position: center;
+  border-radius: 24px 8px;
+  margin: 0px 24px 24px 0px;
+  box-shadow: rgba(255, 255, 255, 0.05) 0px 0px 4px 1px;
+  filter: contrast(1.18) saturate(70%) brightness(.9);
+  border: 1px solid rgba(255, 255, 255, 0.089);
 }
 
+.fleft {
+  float: left;
+}
 
+.fright {
+  float: right;
+}
 
+.diagonal-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff10,
+    #ffffff10 2px,
+    #00000000 2px,
+    #00000000 16px
+  ), center;
+}
 
-
-
-
-
-
+.diagonal-stripes.tight {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff10,
+    #ffffff10 2px,
+    #00000000 2px,
+    #00000000 10px
+  ), center;
+}
