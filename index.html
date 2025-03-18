@@ -15,39 +15,72 @@
   <canvas id="backgroundCanvas"></canvas>
   <script src="/src/dottedBackground.js"></script>
   <div id="app">
-    <div id="LeftContainer" class="RoundedContainerEmpty">
-      <div class="innerBorder contentContainer fullHeight">
+    <div id="LeftContainer" class="darkblurContainer backGlow rad16">
+      <div class="innerBorder thinBorder rad8 contentContainer fullHeight">
         <div>
           <div class="H1Container">
             <h1>Kalle Z. Rathje Madsen</h1>
           </div>
-          <div class="FlexContainer" style="height: 300px;">
-            <div class="ContentPic" style="
-              background-image: url(/src/Files/KallePortrait.png);
-              flex: 1;
+          <div class="titlesContainer">
+            <h2>FULL-STACK DEV</h2>
+            <h2 style="opacity: 0.3;">|</h2>
+            <h2>3D GENERALIST</h2>
+            <h2 style="opacity: 0.3;">|</h2>
+            <h2>TECH-ARTIST</h2>
+          </div>
+          <div class="header-container" data-title="ABOUT ME"></div>
+          <div class="FlexContainer" style="margin-bottom: 24px; height: 220px; ">
+            <div style="flex: 1;
+            max-width: 180px;
+            height: auto;
+            position: relative;"> <!-- Added position: relative -->
+              <div class="ContentPic" style="
+              background-image: url(/src/Files/KalleFace.png); 
               background-position-y: top;
-              max-width: 200px;
-              height: auto ">
+              width: 100%;
+              height: 100%;
+              position: relative; 
+              border-radius: 0px 16px;
+              z-index: 2;"> <!-- Added position: relative and z-index -->
+              </div>
+              <div style="position: absolute;
+              bottom: 10%;
+              left: 12%;
+              width: 76%;
+              height: 80%;
+              border-radius: 42px 4px;
+              background-color: #4eedff6e;
+              box-shadow: 0px 0px 4px 2px #4eedff, inset 0px 0px 24px -8px #4eedff;
+              opacity: .7;"> <!-- Added z-index -->
+              </div>
             </div>
             <div style="flex: 2; justify-content:start; display: flex; flex-direction: column;">
-              <div style="display: flex; height: 30px; width: 100%; align-items: center;">
-                <h2 style=" min-width: 120px; text-align:left; margin: 0;">ABOUT ME</h2>
-                <div class="diagonal-stripes tight" style="flex:3; border-radius: 12px; height: 10px;"></div>
-              </div>
+
               <div style="display: flex; height: auto; container-type: inline-size;">
-                <p style="height:auto; font-size: min(19px, calc(10px + 1.5cqi));">With <b>eight years</b> of experience in the <b>gaming
-                    industry</b> and <b>educational technology</b>,
-                  I’ve
-                  honed my craft as a <b>3D and technical artist</b>. Presently, I’m immersing myself in the <b>vast
-                    world
-                    of
-                    programming</b>, eagerly expanding my skill set and sharpening my expertise. <br>My journey is one of
-                  <b>exploration</b>—absorbing as much knowledge as possible before carving out my own <b>specialized
-                    niche</b> and mastering it.
+                <p style="height:auto; font-size: min(18px, calc(10px + 1.5cqi));">
+                  I'm a 3D generalist and tech artist with a solid blend of creative and technical expertise, currently
+                  focused on growing my skills to become a adaptable fullstack developer.
                 </p>
               </div>
             </div>
           </div>
+          <div class="header-container" data-title="EXPERIENCE"></div>
+
+
+          <p>My career has taken me through a <b>dynamic range</b> of environments, from <b>nimble startups</b> where I
+            thrived as a versatile multitasker, to <b>large international companies</b> where I collaborated in diverse,
+            <b>global squads</b>. Each role has fueled my passion for <b>problem-solving</b> and <b>creativity</b>.
+          </p>
+          <p>I thrive on unraveling the <b>intricacies of logic</b>, decoding how things tick, and find equal joy in
+            transforming that understanding into something <b>visually striking</b> and <b>elegantly designed</b>.</p>
+          <div class="header-container" data-title="MORE STUFF"></div>
+
+          <p>My career has taken me through a <b>dynamic range</b> of environments, from <b>nimble startups</b> where I
+            thrived as a versatile multitasker, to <b>large international companies</b> where I collaborated in diverse,
+            <b>global squads</b>. Each role has fueled my passion for <b>problem-solving</b> and <b>creativity</b>.
+          </p>
+          <p>I thrive on unraveling the <b>intricacies of logic</b>, decoding how things tick, and find equal joy in
+            transforming that understanding into something <b>visually striking</b> and <b>elegantly designed</b>.</p>
           <p>My career has taken me through a <b>dynamic range</b> of environments, from <b>nimble startups</b> where I
             thrived as a versatile multitasker, to <b>large international companies</b> where I collaborated in diverse,
             <b>global squads</b>. Each role has fueled my passion for <b>problem-solving</b> and <b>creativity</b>.
@@ -58,21 +91,21 @@
       </div>
     </div>
     <div id="rightContainer">
-      <div id="navigationContainer">
-        <div class="navItem RoundedContainerEmpty outerBorder">
+      <div id="navigationContainer" class="darkblurContainer backGlow rad16">
+        <div class="navItem thinBorder rad8">
           <p>ABOUT ME</p>
-          <div class="icon person"></div>
+          <div class="icon aboutMe"></div>
         </div>
-        <div class="navItem RoundedContainerEmpty outerBorder">
+        <div class="navItem thinBorder rad8">
           <p>PROJECTS</p>
-          <div class="icon project"></div>
+          <div class="icon projects"></div>
         </div>
-        <div class="navItem RoundedContainerEmpty outerBorder">
+        <div class="navItem thinBorder rad8" style="margin-bottom: 0px;">
           <p>CONTACT</p>
           <div class="icon contact"></div>
         </div>
       </div>
-      <div id="emptySpace" class="RoundedContainerEmpty fullHeight diagonal-stripes "></div>
+      <div id="emptySpace" class="darkblurContainer fullHeight diagonal-stripes "></div>
     </div>
   </div>
 
@@ -92,6 +125,7 @@
       body.classList.remove('green');
     });
   </script>
+  <script src="/src/headerComp.js"></script>
 </body>
 
 </html>

@@ -12,11 +12,11 @@ function resizeCanvas() {
 
 function drawDots() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const spacing = 25;
+    const spacing = 24;
     const radius = 1;
     const baseOpacity = 0.2;
-    const hoverOpacity = 0.0;
-    const maxDistance = 400;
+    const hoverOpacity = 0.6;
+    const maxDistance = 300;
 
     for (let x = 0; x < canvas.width; x += spacing) {
         for (let y = 0; y < canvas.height; y += spacing) {
@@ -29,7 +29,7 @@ function drawDots() {
 
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, 2 * Math.PI);
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = 'Orange';
             ctx.globalAlpha = opacity;
             ctx.fill();
         }
