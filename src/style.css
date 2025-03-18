@@ -229,7 +229,9 @@ body.green::after {
 #rightContainer.expanded p {
   color: #ffffffd8;
 }
-
+#rightContainer .contact {
+  background-image: url(/src/Files/Contact.svg);
+}
 .glowBorder {
   box-shadow:
     inset 0px 0px 10px -8px rgba(255, 255, 255, .5),
